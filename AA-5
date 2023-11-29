@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 # GPIO pin numbers for the LEDs
-led_pins = [8, 1, 9, 20, 21, 22, 23, 24, 25]
+led_pins = [12, 13, 16, 20, 21, 22, 23, 24, 25]
 
 # Setup GPIO mode and pins
 GPIO.setmode(GPIO.BCM)
@@ -52,7 +52,7 @@ try:
     # Blink all LEDs 3 times
     blink_all_leds(3)
 
-    # Repeat the above steps for the modified A-number (a00273819)
+    # Repeat the above steps for each group member's A-Number (A00250399 in this case)
     blink_all_leds(3)
 
 finally:
