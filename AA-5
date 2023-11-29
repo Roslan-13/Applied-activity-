@@ -1,0 +1,60 @@
+import RPi.GPIO as GPIO
+import time
+
+# GPIO pin numbers for the LEDs
+led_pins = [8, 1, 9, 20, 21, 22, 23, 24, 25]
+
+# Setup GPIO mode and pins
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(led_pins, GPIO.OUT)
+
+# Function to turn on all LEDs
+def turn_on_all_leds():
+    GPIO.output(led_pins, GPIO.HIGH)
+
+# Function to turn off all LEDs
+def turn_off_all_leds():
+    GPIO.output(led_pins, GPIO.LOW)
+
+# Function to blink an LED a specified number of times
+def blink_led(pin, blink_count, on_time, off_time):
+    for _ in range(blink_count):
+        GPIO.output(pin, GPIO.HIGH)
+        time.sleep(on_time)
+        GPIO.output(pin, GPIO.LOW)
+        time.sleep(off_time)
+
+# Function to blink all LEDs a specified number of times
+def blink_all_leds(blink_count):
+    for _ in range(blink_count):
+        GPIO.output(led_pins, GPIO.HIGH)
+        time.sleep(1)
+        GPIO.output(led_pins, GPIO.LOW)
+        time.sleep(1)
+
+# Main program
+try:
+    # Turn on all LEDs for a second, then turn them off for a second
+    turn_on_all_leds()
+    time.sleep(1)
+    turn_off_all_leds()
+    time.sleep(1)
+
+    # Blink LED a
+    blink_led(led_pins[0], 9, 1, 1)
+
+    # Blink LED b
+    blink_led(led_pins[1], 8, 1, 0.5)
+
+    # Blink LED c
+    blink_led(led_pins[2], 7, 0.5, 0.5)
+
+    # Blink all LEDs 3 times
+    blink_all_leds(3)
+
+    # Repeat the above steps for the modified A-number (a00273819)
+    blink_all_leds(3)
+
+finally:
+    # Clean up GPIO on program exit
+    GPIO.cleanup()
